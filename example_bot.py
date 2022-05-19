@@ -1,4 +1,5 @@
 import discord
+import token_storage
 
 client = discord.Client()
 
@@ -11,7 +12,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$hello'):
+    if message.content.startswith('$test'):
         await message.channel.send('Hello!')
+    
 
-client.run('your token here')
+tok = token_storage.TokenStorage()
+
+client.run(tok.getToken())
